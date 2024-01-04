@@ -1,58 +1,58 @@
 import React from 'react';
 import {
-  Acoes,
-  CadasterProducts,
+  Cadaster,
+  CadasterButton,
   Container,
+  Context,
   Header,
-  Icon,
-  IconMenu,
-  LogoutButton,
-  Menu,
-  QuantityRegisteredProdutcs,
-  TitleCadasterProcuts,
-  TitleTotalProducts,
-  TotalProducts,
-  UserGreeting,
-  UserInfo,
-  UserInfoDetail,
-  UserName,
-  UserWrapper,
+  HeaderUser,
+  NameUser,
+  NotificationIcon,
+  TextWelcome,
 } from './styles';
-import {Text} from 'react-native';
+import {api} from '../../services/api';
+import { ListProducts } from '../../Components/ListProducts';
+import { ProductList, ProductsListHeader, UserListEmpity } from './styles copy';
+import { FilterProducts } from '../../Components/FilterProducts';
 
 export const Home: React.FunctionComponent = () => {
+  const [products, setProducts] = React.useState([]);
+
+
+  React.useEffect(() => {
+    const loadProducts = async () => {
+      const response = await api.get('/products');
+      setProducts(response.data);
+    };
+    loadProducts();
+  }, []);
+
   return (
     <Container>
       <Header>
-        <UserWrapper>
-          <UserInfo>
-            <Menu onPress={() => {}}>
-              <IconMenu name="menu" />
-            </Menu>
-
-            <UserInfoDetail>
-              <UserGreeting>Olá,</UserGreeting>
-              <UserName>NOME</UserName>
-            </UserInfoDetail>
-          </UserInfo>
-          <LogoutButton onPress={() => {}}>
-            <IconMenu name="log-out" />
-          </LogoutButton>
-        </UserWrapper>
+        <HeaderUser>
+          <TextWelcome>Seja Bem-Vindo, </TextWelcome>
+          <NotificationIcon name='notifications-circle-outline'/>
+        </HeaderUser>
+        <NameUser>ISRAEL</NameUser>
+        <Cadaster>
+          <CadasterButton activeOpacity={0.7}/>
+        </Cadaster>
       </Header>
-      <Acoes>
-        <TotalProducts activeOpacity={0.7}>
-          <Icon name="shopping-cart" />
-          <TitleTotalProducts>Produtos Cadastrados</TitleTotalProducts>
-          <QuantityRegisteredProdutcs>Quantidade:</QuantityRegisteredProdutcs>
-        </TotalProducts>
-        <CadasterProducts activeOpacity={0.7}>
-          <Icon name="edit-2" />
-
-          <TitleCadasterProcuts>Cadastrar Produtos</TitleCadasterProcuts>
-          <Text></Text>
-        </CadasterProducts>
-      </Acoes>
+      <Context>
+      <FilterProducts/>
+      <ProductList
+        data={products}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => (
+          <ListProducts data={item} onPress={() => {}} />
+        )}
+        ListHeaderComponent={<ProductsListHeader>Produtos</ProductsListHeader>}
+        ListEmptyComponent={
+          <UserListEmpity>Ops! Ainda não há registros.</UserListEmpity>
+        }
+      />
+      </Context>
     </Container>
   );
 };
