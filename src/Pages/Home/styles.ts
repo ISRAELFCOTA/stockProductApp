@@ -6,10 +6,11 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export const Container = styled.View`
   flex: 1;
+  background-color: ${({theme}) => theme.colors.primary};
+
 `;
 
 export const Header = styled.View`
-  background-color: ${({theme}) => theme.colors.primary};
   width: 100%;
   height: ${RFPercentage(25)};
 `;
@@ -40,18 +41,28 @@ export const NotificationIcon = styled(Ionicons)`
   color: #fff;
 `;
 
+export const WrapUserAndCadaster = styled.View`
+ flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 export const Cadaster = styled.View``;
 
 export const CadasterButton = styled.TouchableOpacity`
   width: 50px;
   height: 50px;
   margin-top: ${RFValue(20)}px;
+
   background-color: ${({theme}) => theme.colors.light};
-  margin-left: ${RFValue(16)}px;
+  margin-right: ${RFValue(16)}px;
   border-radius: 10px;
 `;
 
 export const Context = styled.View`
   flex: 1;
   background-color: #F4F4F5;
+  border-top-right-radius: ${RFValue(30)}px;
+  border-top-left-radius: ${RFValue(30)}px;
+
 `;
