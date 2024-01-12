@@ -3,6 +3,7 @@ import {
   Cadaster,
   CadasterButton,
   Container,
+  Content,
   Context,
   Header,
   HeaderUser,
@@ -16,9 +17,14 @@ import {ProductList, ProductsListHeader, UserListEmpity} from './styles copy';
 import {FilterProducts} from '../../Components/FilterProducts';
 import { Icon } from '../../Components/Icon';
 import theme from '../../global/styles/theme';
+import { RFValue } from 'react-native-responsive-fontsize';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export const Home: React.FunctionComponent = () => {
-  const [products, setProducts] = React.useState([]);
+  const [products, setProducts] = React.useState([])
+
+const insets = useSafeAreaInsets();
+
   const icon = 40;
   React.useEffect(() => {
     const loadProducts = async () => {
@@ -30,15 +36,23 @@ export const Home: React.FunctionComponent = () => {
 
   return (
     <Container>
+      <Content  style={{marginTop: insets.top}}>
       <Header>
         <HeaderUser>
           <TextWelcome>Seja Bem-Vindo, </TextWelcome>
-
+<Icon
+name='bell'
+/>
         </HeaderUser>
         <WrapUserAndCadaster>
           <NameUser>ISRAEL</NameUser>
           <Cadaster>
-            <CadasterButton activeOpacity={0.7} />
+            <CadasterButton activeOpacity={0.7}>
+            <Icon
+name='plus'
+color={theme.colors.black}
+/>
+            </CadasterButton>
           </Cadaster>
         </WrapUserAndCadaster>
       </Header>
@@ -58,6 +72,7 @@ export const Home: React.FunctionComponent = () => {
           }
         />
       </Context>
+      </Content>
     </Container>
   );
 };

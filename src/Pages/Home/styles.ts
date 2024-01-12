@@ -1,5 +1,4 @@
 import styled from 'styled-components/native';
-
 import {RFPercentage, RFValue} from 'react-native-responsive-fontsize';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -7,17 +6,20 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 export const Container = styled.View`
   flex: 1;
   background-color: ${({theme}) => theme.colors.primary};
+`;
 
+export const Content = styled.View`
+  flex: 1;
+  background-color: ${({theme}) => theme.colors.primary};
 `;
 
 export const Header = styled.View`
-  width: 100%;
-  height: ${RFPercentage(25)};
+  margin: 0 ${RFValue(16)}px;
+  height: ${RFPercentage(25)}px;
 `;
 
 export const HeaderUser = styled.View`
   margin-top: ${RFValue(20)}px;
-  margin-left: ${RFValue(16)}px;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -28,6 +30,7 @@ export const TextWelcome = styled.Text`
   font-size: ${RFValue(12)}px;
   font-weight: bold;
 `;
+
 export const NameUser = styled.Text`
   color: ${({theme}) => theme.colors.gray500};
   font-size: ${RFValue(14)}px;
@@ -50,13 +53,14 @@ export const WrapUserAndCadaster = styled.View`
 export const Cadaster = styled.View``;
 
 export const CadasterButton = styled.TouchableOpacity`
-  width: 50px;
-  height: 50px;
+  align-items: center;
+  justify-content: center;
+  width: ${RFValue(45)}px;
+  height: ${RFValue(45)}px;
+  border-radius: ${RFValue(23)}px;
   margin-top: ${RFValue(20)}px;
-
   background-color: ${({theme}) => theme.colors.light};
   margin-right: ${RFValue(16)}px;
-  border-radius: 10px;
 `;
 
 export const Context = styled.View`

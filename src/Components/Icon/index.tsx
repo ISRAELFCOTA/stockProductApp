@@ -3,6 +3,7 @@ import { useTheme } from 'styled-components/native';
 import { IconName, IconProps, IconTypeOptions } from './types';
 import * as Icons from './exports';
 import theme from '../../global/styles/theme';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 const getIcon = (avatarType: IconName) => {
   const icons: IconTypeOptions = {
@@ -222,7 +223,6 @@ const getIcon = (avatarType: IconName) => {
 };
 
 export const Icon = memo(({ name, color, size }: IconProps) => {
-
   if (!name) {
     return <></>;
   }
@@ -236,8 +236,8 @@ export const Icon = memo(({ name, color, size }: IconProps) => {
   return (
     <TrComponent
       color={color || theme.colors.white}
-      width={size }
-      height={size}
+      width={size || RFValue(24)}
+      height={size || RFValue(24)}
     />
   );
 });
